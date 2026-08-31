@@ -20,4 +20,4 @@ The glyph size is automatically calculated when exporting.
 ## Known Issues
 - There is no undo/redo.
 - Errors are only printed to the console.
-- You cannot create new glyphs in the editor, only edit existing ones.
+- You cannot create or remove glyphs in the editor, only edit existing ones.
