@@ -215,29 +215,36 @@ class FontEditor(Tk):
 
 		return len(self.glyph.pixels)
 
-	def import_glyphs(self, *_) -> None:
-		glyph_filename: str | None = filedialog.askopenfilename(
-        	title='Import Glyph File',
-    	    filetypes=[
-    	        ('Glyph files', '*.bin'),
-    	        ('All files', '*.*')
-    	    ]
-    	)
+	def import_glyphs(self, *_, **kwargs) -> None:
+		glyph_filename: str | None = kwargs.get('glyph_filename')
 
-		glyph_spacing_filename: str | None = filedialog.askopenfilename(
-        	title='Import Glyph Spacing File',
-    	    filetypes=[
-    	        ('Glyph spacing files', '*.bin'),
-    	        ('All files', '*.*')
-    	    ]
-    	)
+		if not glyph_filename:
+			glyph_filename = filedialog.askopenfilename(
+				title='Import Glyph File',
+				filetypes=[
+					('Glyph files', '*.bin'),
+					('All files', '*.*')
+				]
+			)
 
-		glyph_size: int | None = simpledialog.askinteger(
-			'Glyph Size',
-			'Enter glyph size (in bytes):',
-			initialvalue=0x18,
-			minvalue=1
-		)
+		glyph_spacing_filename: str | None = kwargs.get('glyph_spacing_filename')
+		if not glyph_filename:
+			glyph_spacing_filename = filedialog.askopenfilename(
+        		title='Import Glyph Spacing File',
+    		    filetypes=[
+    		        ('Glyph spacing files', '*.bin'),
+    		        ('All files', '*.*')
+    		    ]
+    		)
+
+		glyph_size: int | None = kwargs.get('glyph_size')
+		if not glyph_filename:
+			glyph_size = simpledialog.askinteger(
+				'Glyph Size',
+				'Enter glyph size (in bytes):',
+				initialvalue=0x18,
+				minvalue=1
+			)
 
 		if not glyph_filename or not glyph_spacing_filename or not glyph_size:
 			return
