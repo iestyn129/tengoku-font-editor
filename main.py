@@ -7,7 +7,7 @@ from sys import argv
 def main() -> None:
 	app: FontEditor = FontEditor()
 
-	if len(argv) > 4:
+	if len(argv) > 3:
 		app.import_glyphs(
 			glyph_filename=argv[2],
 			glyph_spacing_filename=argv[3],
